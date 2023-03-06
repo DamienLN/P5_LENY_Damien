@@ -11,13 +11,13 @@ let panier = JSON.parse(localStorage.getItem("panier"))
   panier.forEach(articlePanier => {
     
     let objectURL = host + "/products/" + articlePanier.id;
-    console.log(objectURL);
+   
       
     fetch(objectURL)
     
     .then((response) => response.json())
     .then((article) => {
-      console.log(article);
+     
     cartSection.innerHTML += 
     ` 
       <article class="cart__item" data-id="${article._id}" data-color="${articlePanier.color}">
@@ -66,10 +66,8 @@ const deleteButtons = document.getElementsByClassName("deleteItem");
 function deleteItem(id,color){
   let panier = JSON.parse(localStorage.getItem("panier")) 
   articleTrouver = panier.find(articlePanier => articlePanier.id == id && articlePanier.color == color )
-  console.log(articleTrouver)
   index = panier.indexOf(articleTrouver)
   panier.splice(index,1)
-  console.log(panier)
   localStorage.setItem('panier',JSON.stringify(panier))
   alert("Ce produit à bien été supprimé du panier");
   location.reload();
@@ -79,11 +77,11 @@ function deleteItem(id,color){
 function changeQuantity(id,color,quantity){
   let panier = JSON.parse(localStorage.getItem("panier")) 
   articleTrouver = panier.find(articlePanier => articlePanier.id == id && articlePanier.color == color )
-  console.log(articleTrouver)
+
   articleTrouver.quantity = quantity
   index = panier.indexOf(articleTrouver)
   panier[index]= articleTrouver
-  console.log(panier)
+
   localStorage.setItem('panier',JSON.stringify(panier))
   location.reload()
 }
@@ -97,8 +95,7 @@ function calculTotal(){
   panier.forEach(articlePanier => {
     totalQuantity += parseInt(articlePanier.quantity)
     let objectURL = host + "/products/" + articlePanier.id;
-    console.log(objectURL);
-      
+
     fetch(objectURL)
     
     .then((response) => response.json())
@@ -200,7 +197,7 @@ function makeJsonData() {
 
   for (i = 0; i < items.length; i++) {
     if (products.find((e) => e == items[i]['id'])) {
-      console.log("not found");
+
     } else {
       products.push(items[i]['id']);
     }
@@ -229,7 +226,6 @@ orderElement.addEventListener("click", (e) => {
       //clear
       .then((order) => {
         let confirmationUrl = "./confirmation.html?id=" + order.orderId;
-        console.log(order)
         window.location.href = confirmationUrl;
       })
       // error

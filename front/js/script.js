@@ -6,7 +6,6 @@ fetch("http://localhost:3000/api/products")
     })
 
     .then(function(kanaps){
-        console.log(kanaps)
         kanaps.forEach(kanap=> {
         itemsElement.innerHTML += 
         ` 

@@ -1,15 +1,14 @@
 const id = new URL(window.location).searchParams.get("id");
 const host = "http://localhost:3000/api/products";
 const objectURL = host + "/" + id;
-console.log(objectURL);
+
 
 fetch(objectURL)
 .then((response) => response.json())
 
 // ================ display features on products pages ================ //
 .then((article) => {
-  console.log(article);
-
+ 
   // img
   let imgElement = document.querySelector(".item__img");
   imgElement.innerHTML = `<img src="${article.imageUrl}" alt="${article.altTxt}">`;
