@@ -100,8 +100,8 @@ function calculTotal(){
     
     .then((response) => response.json())
     .then((article) => {
-      totalPrice += parseInt(article.price)
-      totalPriceElement.innerText = totalPrice*parseInt(articlePanier.quantity)
+      totalPrice += parseInt(article.price)*parseInt(articlePanier.quantity)
+      totalPriceElement.innerText = totalPrice
     })
   })
 
